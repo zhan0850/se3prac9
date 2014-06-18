@@ -1,0 +1,60 @@
+1. Introduction
+The subject program is a movie ticket booking application that allows a user to choose a movie session and book tickets. The program was developed by a group of students doing the previous version of se3 in 2013 for another group to test (I don't have their test package since otherwise I would be accused for plagiarism).  
+
+The program is written really well. Its sophisticated exception handling would probably make any comprehensive unit testing a waste of time. So, given really limited time, I decided to take another path: focusing on one single functionality.
+
+The test result reveals a bug. The bug is not a conventional runtime error or uncaught exception, but just a result not matching the requirement.
+
+2. Test Coverage
+The test is focused on the functionality of random seat allocation. This functionality allows the user to randomly allocate all remaining seats in the current transaction into the theatre session, idealy contiguously. 
+
+3. Test Methods
+The test is a combination of blackbox testing, whitebox testing, and unit testing.
+
+3.1 Blackbox Testing
+-Run the app and choose a session with all empty seats and click "Select Tickets" button.
+-Choose any ticket type and any seat type. Input a number of tickets in range [2, 9]. Then click "Forward" button.
+-Click "Randomly Allocate Remaining Seats" button. You will see all requested seates are allocated to contiguous seats in the same row and of the right seat type. This matches the expectation.
+-Click "Back" button. (Do not click "Book" button. Booking is not covered by this test and clicking that button will save the changes to file, which may break carefully written test cases)
+-Input 10 as number of tickets. Everything else stays the same. Click "Forward".
+-Click "Randomly Allocate Remaining Seats". You will see there is one seat allocated alone. This does not match the expectation. (No one wants to sit alone)
+
+3.2 Whitebox Testing
+The random allocatino functionality is implemented like this:
+1. All GUI components are in package se3projecta.GUI
+2. The main panel contains an instance of JSeatSelectionPanel
+3. JSeatSelectionPanel contains a randomAllocationButton
+4. randomAllocationButton's ActionListener's actionPerformed() invokes randomlyAllocate() in class Transaction
+5. randomlyAllocate() then invokes placeRandom() in class TheatreSession in package se3projecta.Model
+6. placeRandom() takes a seat type and a number of seats as parameters,  invokes and passes parameters to findRandomFit() in the same class
+7. findRandomFit() does the work:
+ 7.1 Shuffles the seat rows in the theater
+ 7.2 Loops through shuffled rows to try to fit in the requested seats contiguously
+	a. Randomly picks a start spot
+	b. If can't fit, repeat I, until all spots in the row have been tried
+ 7.3 If no row can fit, puts away 1 seat in the request and goes back to 7.2
+ 7.4 Goes back to 7.2 with the remaining seats
+8. findRandomFit() returns an array of allocated seats, which is passed back to GUI components to show changes
+
+After understood the source code, the testing is based on the array of seats returned by findRandomFit().  It is broken down into 3 parts:
+Test for seat type of allocated seats (63 test cases)
+Test for continguousness of allocations within each row (63 test cases)
+Test for non-existance of isolated seat allocation (Uncountable test cases)
+
+Each test case involves a particular session. Some of the sessions are made in the way specifically for the purpose of this test. (For example, in some sessions, the greatest number of contiguous seats in a row is lessened. For more information, please run the app and study the "Occupied" seats' distribution in different sessions.)
+
+3.3 Unit Testing
+The test file is written using JUnit 4.0
+
+Please find the test file in SE3ProjectA/test/se3project3/Model/
+
+4. Test Result
+As suggested in blackbox testing, when input 10 as the number of tickets, there is a seat allocated alone. This is not a desired result.
+
+Also, in whitebox test, any test case of a number of tickets of 1 more than the greatest number of contiguous seats of the same type is not able to pass the non-isolation test.
+
+So, I suggest that this is a bug, because a user would require not to sit alone if there is at least one friend. 
+
+
+
+
