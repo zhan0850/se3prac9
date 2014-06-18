@@ -21,4 +21,4 @@ Test:<br>
   -The test file is in SE3ProjectA/test/se3projecta/Model/<br>
   -There is only one test file, but there are many tests, each of which has many test cases<br>
   -The test is focused on the functionality of random seat allocation. As a result, a bug is spotted.<br>
-  -For more information, please read bugreport.txt<br>
+  -For more information, please read testreport.txt<br>
