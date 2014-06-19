@@ -22,3 +22,7 @@ Test:<br>
   -There is only one test file, but there are many tests, each of which has many test cases<br>
   -The test is focused on the functionality of random seat allocation. As a result, a bug is spotted.<br>
   -For more information, please read testreport.txt<br>
+
+Prac10<br>
+  -Added a file for prac10, please follow the instructions in testreport
+  
