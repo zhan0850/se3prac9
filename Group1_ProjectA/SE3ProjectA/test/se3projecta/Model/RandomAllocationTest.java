@@ -247,30 +247,27 @@ public class RandomAllocationTest {
         System.out.println("Test Non Isolation");
         
         //test cases: bronze
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) 
-            for(int noOfSeats = 2; noOfSeats <= sessions.get(sessionNo).getSeats(bronze, SeatState.Empty).length; noOfSeats++) {
-//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
-                testNonIsolation(sessionNo, bronze, noOfSeats);
-                tearDown(); //because a session is used for many times
-            }
+        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
+            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(bronze, SeatState.Empty).length);
+            
+            testContiguousAllocation(sessionNo, bronze, noOfSeats);
+        }
         System.out.println();
         
         //test cases: silver
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) 
-            for(int noOfSeats = 2; noOfSeats <= sessions.get(sessionNo).getSeats(silver, SeatState.Empty).length; noOfSeats++) {
-//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
-                testNonIsolation(sessionNo, silver, noOfSeats);
-                tearDown();
-            }
+        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
+            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(silver, SeatState.Empty).length);
+            
+            testContiguousAllocation(sessionNo, silver, noOfSeats);
+        }
         System.out.println();
         
         //test cases: gold
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) 
-            for(int noOfSeats = 2; noOfSeats <= sessions.get(sessionNo).getSeats(gold, SeatState.Empty).length; noOfSeats++) {
-//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
-                testNonIsolation(sessionNo, gold, noOfSeats);
-                tearDown();
-            }
+        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
+            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(gold, SeatState.Empty).length);
+            
+            testContiguousAllocation(sessionNo, gold, noOfSeats);
+        }
         
         System.out.println("End Test Non Isolation\n");
     }
