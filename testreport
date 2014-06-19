@@ -54,7 +54,7 @@ As suggested in blackbox testing, when input 10 as the number of tickets, there 
 
 Also, in whitebox test, any test case of a number of tickets of 1 more than the greatest number of contiguous seats of the same type is not able to pass the non-isolation test.
 
-So, I suggest that this is a bug, because a user would require not to sit alone if there is at least one friend. 
+So, although what I spotted is not a runtime error or uncaught exception, I suggest that this is a bug, because a user would require not to sit alone if there is at least one friend. 
 
 5. Fix
 This is for prac 10. I added a separate file for this checkpoint as I didn't change the original file because you ask us to show the defect prior to correction. Please follow these steps:
