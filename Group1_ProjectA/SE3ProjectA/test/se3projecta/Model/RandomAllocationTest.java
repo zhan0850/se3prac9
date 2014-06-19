@@ -246,27 +246,27 @@ public class RandomAllocationTest {
     public void testNonIsolation() {
         System.out.println("Test Non Isolation");
         
-        //test cases: bronze
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
-            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(bronze, SeatState.Empty).length);
-            
-            testContiguousAllocation(sessionNo, bronze, noOfSeats);
+        //test cases: bronze 
+        for(int noOfSeats = 2; noOfSeats <= sessions.get(0).getSeats(bronze, SeatState.Empty).length; noOfSeats++) {
+//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
+            testNonIsolation(0, bronze, noOfSeats);
+            tearDown(); //because a session is used for many times
         }
         System.out.println();
         
         //test cases: silver
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
-            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(silver, SeatState.Empty).length);
-            
-            testContiguousAllocation(sessionNo, silver, noOfSeats);
+        for(int noOfSeats = 2; noOfSeats <= sessions.get(0).getSeats(silver, SeatState.Empty).length; noOfSeats++) {
+//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
+            testNonIsolation(0, silver, noOfSeats);
+            tearDown();
         }
         System.out.println();
         
         //test cases: gold
-        for(int sessionNo = 0; sessionNo < sessions.size(); sessionNo++) {
-            int noOfSeats = (int)(Math.random() * sessions.get(sessionNo).getSeats(gold, SeatState.Empty).length);
-            
-            testContiguousAllocation(sessionNo, gold, noOfSeats);
+        for(int noOfSeats = 2; noOfSeats <= sessions.get(0).getSeats(gold, SeatState.Empty).length; noOfSeats++) {
+//            for(int noOfSeats = 2; noOfSeats < 10; noOfSeats++) {
+            testNonIsolation(0, gold, noOfSeats);
+            tearDown();
         }
         
         System.out.println("End Test Non Isolation\n");
