@@ -18,6 +18,7 @@ The test is a combination of blackbox testing, whitebox testing, and unit testin
 -Click "Back" button. (Do not click "Book" button. Booking is not covered by this test and clicking that button will save the changes to file, which may break carefully written test cases)
 -Input 10 as number of tickets. Everything else stays the same. Click "Forward".
 -Click "Randomly Allocate Remaining Seats". You will see there is one seat allocated alone. This does not match the expectation. (No one wants to sit alone)
+-Input any number of tickets that is 1 more than the sum of whole rows of empty seats of a seat type, you will get the same result.
 
 3.2 Whitebox Testing
 The random allocatino functionality is implemented like this:
@@ -31,7 +32,7 @@ The random allocatino functionality is implemented like this:
  7.1 Shuffles the seat rows in the theater
  7.2 Loops through shuffled rows to try to fit in the requested seats contiguously
 	a. Randomly picks a start spot
-	b. If can't fit, repeat I, until all spots in the row have been tried
+	b. If can't fit, repeat a, until all spots in the row have been tried
  7.3 If no row can fit, puts away 1 seat in the request and goes back to 7.2
  7.4 Goes back to 7.2 with the remaining seats
 8. findRandomFit() returns an array of allocated seats, which is passed back to GUI components to show changes
@@ -55,6 +56,18 @@ Also, in whitebox test, any test case of a number of tickets of 1 more than the 
 
 So, I suggest that this is a bug, because a user would require not to sit alone if there is at least one friend. 
 
+5. Fix
+This is for prac 10. I added a separate file for this checkpoint as I didn't change the original file because you ask us to show the defect prior to correction. Please follow these steps:
+0. Check my prac 9 first if you haven't done so (read README, testreport, run the app, and run the test file)
+1. Substitute the file SE3ProjectA/src/se3projecta/Model/TheatreSession.java with this file
+2. Run the application
+3. Choose an empty session and click "Select Tickets" button
+4. Choose any seat type and any number of tickets, ignore ticket type, and click "Forward" button
+5. Click "Randomly Allocate Remaining Seats" button. You will see no seat is allocated alone (isolated from others)
+
+The rationale behind this is:
+-In the original file, if a requested array of seats can't fit in a row, one seat is dropped to try again. Thus, for example, gold seats have a longest row of 9 seats, for a request of 10, 1 seat is dropped, the other 9 will fit in, so the dropped seat is left alone
+-In my fixed file, when not fitting happens, half of the seats are dropped, and repeatedly do so until they fit. If during dividing there exists one seat to be allocated, this seat is allocated to a place next to a previously allocated seat.
 
 
 
