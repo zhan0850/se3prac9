@@ -64,6 +64,7 @@ This is for prac 10. I added a separate file for this checkpoint as I didn't cha
 3. Choose an empty session and click "Select Tickets" button
 4. Choose any seat type and any number of tickets, ignore ticket type, and click "Forward" button
 5. Click "Randomly Allocate Remaining Seats" button. You will see no seat is allocated alone (isolated from others)
+6. Run the test file. You will see all tests are passed.
 
 The rationale behind this is:
 -In the original file, if a requested array of seats can't fit in a row, one seat is dropped to try again. Thus, for example, gold seats have a longest row of 9 seats, for a request of 10, 1 seat is dropped, the other 9 will fit in, so the dropped seat is left alone
