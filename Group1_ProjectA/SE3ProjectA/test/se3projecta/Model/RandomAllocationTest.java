@@ -302,7 +302,7 @@ public class RandomAllocationTest {
                     if(j == allocationMap[i].length-1 || seats[i][j+1].getType() != type || seats[i][j+1].getState().equals(SeatState.Occupied)) {
                         if(j > 0 && seats[i][j-1].getType().equals(type) && !seats[i][j-1].getState().equals(SeatState.Occupied) && !allocationMap[i][j-1]) {
                             result = false;
-//                            System.out.println("\tFAILED! Type A fault: " + i + " " + j);
+                            System.out.println("\tFAILED! Type A fault: " + i + " " + j);
                         }
                             
                     }
@@ -310,14 +310,14 @@ public class RandomAllocationTest {
                     else if(j == 0 || seats[i][j-1].getType() != type || seats[i][j-1].getState().equals(SeatState.Occupied)) {
                         if(!allocationMap[i][j+1]) {
                             result = false;
-//                            System.out.println("\tFAILED! Type B fault: " + i + " " + j);
+                            System.out.println("\tFAILED! Type B fault: " + i + " " + j);
                         }
                             
                     }
                     //both sides are of same type and empty
                     else if(! (allocationMap[i][j-1] || allocationMap[i][j+1])) {
                         result = false;
-//                        System.out.println("\tFAILED! Type C fault: " + i + " " + j);
+                        System.out.println("\tFAILED! Type C fault: " + i + " " + j);
                     }
                         
                         
