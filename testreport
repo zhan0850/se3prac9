@@ -59,7 +59,7 @@ So, although what I spotted is not a runtime error or uncaught exception, I sugg
 5. Fix
 This is for prac 10. I added a separate file for this checkpoint as I didn't change the original file because you ask us to show the defect prior to correction. Please follow these steps:
 0. Check my prac 9 first if you haven't done so (read README, testreport, run the app, and run the test file)
-1. Substitute the file SE3ProjectA/src/se3projecta/Model/TheatreSession.java with this file
+1. Substitute the file SE3ProjectA/src/se3projecta/Model/TheatreSession.java with the file of the same name in this directory marked as Prac10
 2. Run the application
 3. Choose an empty session and click "Select Tickets" button
 4. Choose any seat type and any number of tickets, ignore ticket type, and click "Forward" button
